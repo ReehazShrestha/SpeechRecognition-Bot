@@ -7,7 +7,7 @@ recognize = sr.Recognizer()
 genai.configure(api_key="AIzaSyDamDyhxxAKQXhfsFbImw65-L_rehmbcQg")
 model = genai.GenerativeModel('gemini-pro')
 chat = model.start_chat(history=[])
-print(":")
+print("")
 
 while True:
 
@@ -22,17 +22,19 @@ while True:
             if text == "exit":
                 break
             else:    
-                chat.send_message(f"{text} provide information under 100 lines or less !")
+                chat.send_message(f"{text} provide information under 50 lines or less !")
                 prompt = chat.last.text
+                f_prompt = prompt.replace("*", "")
                 voice = pyttsx3.init()
-                voice.say(prompt)
+                print("Bot: ")
+                print(f_prompt)
+                voice.say(f_prompt)
                 voice.runAndWait()
-                print(f"Bot: {prompt}")
+                
+                
 
     except:
         recognize = sr.Recognizer()
-        if text == "exit":
-            breaK
         continue
 
 
